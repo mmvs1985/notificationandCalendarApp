@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">notificationApp</string>
+    <string name="txtboton"> clickeame</string>
 </resources>
