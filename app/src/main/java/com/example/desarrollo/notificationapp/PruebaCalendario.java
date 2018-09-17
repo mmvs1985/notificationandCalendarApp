@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.io.Console;
+import java.util.Locale;
 
 public class PruebaCalendario extends AppCompatActivity {
     private TextView tvId;
@@ -103,7 +104,7 @@ public class PruebaCalendario extends AppCompatActivity {
             Log.d("WASADISPLAYNAME",displayName);
             Log.d("WASAACCOUNTTYPE",accountType);
             Log.d("WASAownerName",ownerName);
-            tvId.setText(calID);
+            tvId.setText(String.valueOf(calID));
             tvAccountName.setText(accountName);
             tvCalendarDisplayName.setText(displayName);
             tvAccountName.setText(ownerName);
