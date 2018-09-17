@@ -52,11 +52,15 @@ public class PruebaCalendario extends AppCompatActivity {
         Cursor cur = null;
         ContentResolver cr = getContentResolver();
         Uri uri = CalendarContract.Calendars.CONTENT_URI;
-        String selection = "((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND ("
+        /*String selection = "((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND ("
                 + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?) AND ("
                 + CalendarContract.Calendars.OWNER_ACCOUNT + " = ?))";
         String[] selectionArgs = new String[]{"mmvs1985@gmail.com", "com.google",
-                "mmvs1985@gmail.com"};
+                "mmvs1985@gmail.com"};*/
+        //prueba individual teniendo solo el mail.
+        String selection = "(" + CalendarContract.Calendars.OWNER_ACCOUNT + " = ?)";
+        String[] selectionArgs = new String[]{"mmvs1985@gmail.com"};
+
         // Submit the query and get a Cursor object back.
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
