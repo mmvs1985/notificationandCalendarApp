@@ -41,15 +41,17 @@ public class PruebaCalendario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prueba_calendario);
-        tvId = (TextView)findViewById(R.id.idTv);
-        tvAccountName = (TextView)findViewById(R.id.accountTv);
-        tvCalendarDisplayName = (TextView)findViewById(R.id.calDispNametv);
-        tvOwnerAccount = (TextView)findViewById(R.id.ownerTv);
+        String mail=getIntent().getStringExtra("mail");
+        Log.d("WASAMailExtra: ",mail);
+        tvId = findViewById(R.id.idTv);
+        tvAccountName = findViewById(R.id.accountTv);
+        tvCalendarDisplayName = findViewById(R.id.calDispNametv);
+        tvOwnerAccount = findViewById(R.id.ownerTv);
         // Use the cursor to step through the returned records
 
         Log.d("ARRANCA CALENDARIO","OK");
         // Run query
-        Cursor cur = null;
+        Cursor cur;
         ContentResolver cr = getContentResolver();
         Uri uri = CalendarContract.Calendars.CONTENT_URI;
         /*String selection = "((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND ("
@@ -58,8 +60,13 @@ public class PruebaCalendario extends AppCompatActivity {
         String[] selectionArgs = new String[]{"mmvs1985@gmail.com", "com.google",
                 "mmvs1985@gmail.com"};*/
         //prueba individual teniendo solo el mail.
-        String selection = "(" + CalendarContract.Calendars.OWNER_ACCOUNT + " = ?)";
-        String[] selectionArgs = new String[]{"mmvs1985@gmail.com"};
+        String selection = null;
+        String[] selectionArgs =null;
+
+        if (!mail.equals("nulo")) {
+            selection = "(" + CalendarContract.Calendars.OWNER_ACCOUNT + " = ?)";
+            selectionArgs = new String[]{mail};
+        }
 
         // Submit the query and get a Cursor object back.
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
@@ -74,13 +81,14 @@ public class PruebaCalendario extends AppCompatActivity {
             return;
         }
         //cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
-        cur = cr.query(uri, EVENT_PROJECTION, null, null, null);
+        cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
+
         while (cur.moveToNext()) {
-            Integer calID = 0;
-            String displayName = null;
-            String accountName = null;
-            String ownerName = null;
-            String accountType=null;
+            Integer calID;
+            String displayName;
+            String accountName;
+            String ownerName;
+            String accountType;
 
             // Get the field values
             calID = cur.getInt(PROJECTION_ID_INDEX);
@@ -95,12 +103,13 @@ public class PruebaCalendario extends AppCompatActivity {
             Log.d("WASADISPLAYNAME",displayName);
             Log.d("WASAACCOUNTTYPE",accountType);
             Log.d("WASAownerName",ownerName);
-            tvId.setText(calID.toString());
+            tvId.setText(calID);
             tvAccountName.setText(accountName);
             tvCalendarDisplayName.setText(displayName);
             tvAccountName.setText(ownerName);
 
 
         }
+        cur.close();
     }
 }

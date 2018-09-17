@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">notificationApp</string>
-    <string name="txtboton"> clickeame</string>
+    <string name="txtboton"> Todos los calendarios</string>
+    <string name="txtbotonEste">Este calendario</string>
+    <string name="txtSolMail">Ingresa tu email</string>
+    <string name="txtmail">Mail</string>
 </resources>
