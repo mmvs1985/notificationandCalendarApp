@@ -4,4 +4,5 @@
     <string name="txtbotonEste">Este calendario</string>
     <string name="txtSolMail">Ingresa tu email</string>
     <string name="txtmail">Mail</string>
+    <string name="txtEventos">Eventos</string>
 </resources>
