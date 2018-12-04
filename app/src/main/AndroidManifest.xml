@@ -28,7 +28,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".PruebaCalendario"></activity>
+        <activity android:name=".PruebaCalendario" />
+        <activity android:name=".MuestraEventos"></activity>
     </application>
 
 </manifest>
